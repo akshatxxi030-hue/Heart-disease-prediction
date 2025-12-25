@@ -3,20 +3,13 @@ import numpy as np
 import pandas as pd
 import joblib
 
-# -------------------------
-# LOAD MODEL
-# -------------------------
+
 rf_model = joblib.load("heart_random_forest_model.pkl")
 
-# -------------------------
-# APP TITLE
-# -------------------------
+
 st.title("❤️ Heart Disease Prediction App")
 st.write("Enter patient details to predict heart disease risk.")
 
-# -------------------------
-# USER INPUTS
-# -------------------------
 age = st.number_input("Age", min_value=1, max_value=120, value=50)
 
 sex = st.selectbox("Sex", ["Male", "Female"])
@@ -82,9 +75,6 @@ thal_map = {
 }
 thal = thal_map[thal_text]
 
-# -------------------------
-# PREDICTION BUTTON
-# -------------------------
 if st.button("Predict Heart Disease"):
 
     user_input = np.array([[age, sex, cp, bp, chol, fbs,
@@ -103,5 +93,6 @@ if st.button("Predict Heart Disease"):
         st.error(f"⚠️ Heart Disease Likely\n\nRisk Probability: {disease_prob:.2f}%")
     else:
         st.success(f"✅ Heart Disease Unlikely\n\nRisk Probability: {disease_prob:.2f}%")
+
 
     st.caption("⚠️ This tool is for educational purposes only.")
