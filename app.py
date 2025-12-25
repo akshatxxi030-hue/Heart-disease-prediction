@@ -1,10 +1,12 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import joblib
+import pickle
 
 
-rf_model = joblib.load("heart_random_forest_model.pkl")
+with open("heart_random_forest_model.pkl", "rb") as file:
+    rf_model = pickle.load(file)
+
 
 
 st.title("❤️ Heart Disease Prediction App")
@@ -96,3 +98,4 @@ if st.button("Predict Heart Disease"):
 
 
     st.caption("⚠️ This tool is for educational purposes only.")
+
